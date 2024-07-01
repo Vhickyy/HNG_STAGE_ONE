@@ -15,8 +15,8 @@ app.get("/api/hello", async (req,res) => {
         const {visitor_name} = req.query;  // ======= Visitor Name ========= //
         const name = visitor_name || "Mark";
 
-        let ip = req.headers['x-forwarded-for'] ? ip.split(',')[0] : "127.0.0.1"; // ==== Visitor Ip === //
-
+        let ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',')[0] : "127.0.0.1"; // ==== Visitor Ip === //
+        
         const getLocation = await axios(`http://ip-api.com/json/${ip}`);
         const getLocationData = await getLocation.data;
         
